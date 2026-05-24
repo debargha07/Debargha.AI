@@ -38,36 +38,7 @@
             background-color: #cbd5e1; 
             padding: 1rem; 
             overflow-x: hidden;
-            <div id="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <button id="music-toggle" style="padding: 10px 20px; cursor: pointer; border-radius: 20px; border: none; background: #38bdf8; color: white; font-weight: bold;">
-        Play Music
-    </button>
-    
-    <audio id="bg-music" src="BAKAR ___ Hell N' Back.mp3"></audio>
-</div>
-
-<script>
-    const audio = document.getElementById('bg-music');
-    const button = document.getElementById('music-toggle');
-
-    button.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.currentTime = 0; // Start at the beginning
-            audio.play();
-            button.innerText = "Pause Music";
-
-            // Set a timer to pause after 15 seconds
-            setTimeout(() => {
-                audio.pause();
-                button.innerText = "Play Music";
-            }, 15000); 
-        } else {
-            audio.pause();
-            button.innerText = "Play Music";
-        }
-    });
-</script>
-        }
+        } /* FIXED: Closed the body tag properly here */
 
         /* The Main Website Border (The "Card") */
         .site-wrapper {
@@ -247,7 +218,7 @@
             object-position: center;
         }
 
-        /* FIXED: Continuous Ticker (No longer breaking out of the container) */
+        /* Continuous Ticker */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -579,7 +550,7 @@
 
                     <div class="exp-item">
                         <h4>Research Intern: Digital Twinning Technology</h4>
-                        <p>IEM IEDC Lab</p>
+                        <p>Advanced Academic Research</p>
                     </div>
 
                     <div class="exp-item">
@@ -716,9 +687,18 @@
             </div>
         </footer>
 
-    </div> <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    </div> 
+    
+    <div id="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="music-toggle" class="btn brutal-box bg-cyan">
+            Play Music
+        </button>
+        <audio id="bg-music" src="BAKAR ___ Hell N' Back.mp3"></audio>
+    </div>
+
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <script>
-        // Initializes the live GitHub calendar fetching data for "debargha07"
+        // Initializes the live GitHub calendar
         GitHubCalendar(".calendar", "debargha07", { responsive: true, tooltips: true });
 
         // Typing Animation Logic 
@@ -768,6 +748,27 @@
         
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(type, newTextDelay);
+        });
+
+        // Music Player Logic
+        const audio = document.getElementById('bg-music');
+        const button = document.getElementById('music-toggle');
+
+        button.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.currentTime = 0; // Start at the beginning
+                audio.play();
+                button.innerText = "Pause Music";
+
+                // Set a timer to pause after 15 seconds
+                setTimeout(() => {
+                    audio.pause();
+                    button.innerText = "Play Music";
+                }, 15000); 
+            } else {
+                audio.pause();
+                button.innerText = "Play Music";
+            }
         });
     </script>
 </body>
