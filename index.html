@@ -33,14 +33,12 @@
             scroll-behavior: smooth;
         }
 
-        /* Outer Background */
         body {
             background-color: #cbd5e1; 
             padding: 1rem; 
             overflow-x: hidden;
-        } /* FIXED: Closed the body tag properly here */
+        } 
 
-        /* The Main Website Border (The "Card") */
         .site-wrapper {
             background-color: #fafafa;
             background-image: 
@@ -55,7 +53,6 @@
             position: relative;
         }
 
-        /* Neo-Brutalist Core Utility */
         .brutal-box {
             background: #fff;
             border: 3px solid var(--border-dark);
@@ -77,11 +74,10 @@
             align-items: center;
             padding: 1.5rem 2rem;
             margin-bottom: 4rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem; /* Adjusted since the music player is above it now */
             z-index: 100;
         }
 
-        /* Corrected Signature Styling for Horizontal Image */
         .signature-img {
             position: absolute;
             left: 1.5rem;
@@ -104,7 +100,6 @@
             gap: 1.5rem;
         }
 
-        /* Colorful Navbar Links */
         .nav-item {
             padding: 0.5rem 1rem;
             border: 2px solid var(--border-dark);
@@ -218,7 +213,6 @@
             object-position: center;
         }
 
-        /* Continuous Ticker */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -249,7 +243,6 @@
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
-        /* Section Headers */
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -262,7 +255,6 @@
             padding: 0.5rem 2rem;
         }
 
-        /* Experience & Activity */
         .experience-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -300,7 +292,6 @@
             color: #333;
         }
 
-        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -348,7 +339,6 @@
             border-radius: 2px;
         }
 
-        /* GitHub Calendar */
         .calendar-container {
             padding: 2rem;
             margin-bottom: 6rem;
@@ -371,7 +361,6 @@
             font-weight: 600;
         }
 
-        /* Education */
         .education-card {
             padding: 2.5rem;
             margin-bottom: 6rem;
@@ -391,7 +380,6 @@
             font-weight: 600;
         }
 
-        /* Footer */
         .contact-footer {
             margin-top: 2rem;
             margin-bottom: 2rem;
@@ -440,7 +428,6 @@
         .bg-purple { background: var(--brand-purple); }
         .bg-orange { background: var(--brand-orange); }
 
-        /* Media Queries */
         @media (max-width: 900px) {
             body { padding: 0.5rem; }
             .site-wrapper { padding: 1rem; border-width: 3px; box-shadow: 6px 6px 0px #000; }
@@ -467,6 +454,13 @@
 <body>
 
     <div class="site-wrapper">
+
+        <div id="music-player" style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+            <button id="music-toggle" class="btn brutal-box bg-purple" style="font-size: 0.9rem; padding: 0.4rem 1rem; border-width: 2px; box-shadow: 3px 3px 0px var(--border-dark);">
+                🎵 Play Music
+            </button>
+            <audio id="bg-music" src="BAKAR ___ Hell N' Back.mp3" loop></audio>
+        </div>
 
         <nav class="brutal-box bg-yellow">
             <img src="signature.png" alt="D.pal" class="signature-img" onerror="this.onerror=null; this.outerHTML='<span style=\'font-family:Caveat;font-size:3.5rem;font-weight:700;position:absolute;left:2rem;top:0;color:#000;\'>D.pal</span>';">
@@ -689,13 +683,6 @@
 
     </div> 
     
-    <div id="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-        <button id="music-toggle" class="btn brutal-box bg-cyan">
-            Play Music
-        </button>
-        <audio id="bg-music" src="BAKAR ___ Hell N' Back.mp3"></audio>
-    </div>
-
     <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <script>
         // Initializes the live GitHub calendar
@@ -750,24 +737,17 @@
             setTimeout(type, newTextDelay);
         });
 
-        // Music Player Logic
+        // NEW: Fixed Music Player Logic (No more 15 second timeout, plays continuously)
         const audio = document.getElementById('bg-music');
         const button = document.getElementById('music-toggle');
 
         button.addEventListener('click', () => {
             if (audio.paused) {
-                audio.currentTime = 0; // Start at the beginning
                 audio.play();
-                button.innerText = "Pause Music";
-
-                // Set a timer to pause after 15 seconds
-                setTimeout(() => {
-                    audio.pause();
-                    button.innerText = "Play Music";
-                }, 15000); 
+                button.innerText = "⏸ Pause Music";
             } else {
                 audio.pause();
-                button.innerText = "Play Music";
+                button.innerText = "🎵 Play Music";
             }
         });
     </script>
