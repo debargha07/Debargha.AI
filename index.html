@@ -38,6 +38,35 @@
             background-color: #cbd5e1; 
             padding: 1rem; 
             overflow-x: hidden;
+            <div id="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <button id="music-toggle" style="padding: 10px 20px; cursor: pointer; border-radius: 20px; border: none; background: #38bdf8; color: white; font-weight: bold;">
+        Play Music
+    </button>
+    
+    <audio id="bg-music" src="BAKAR ___ Hell N' Back.mp3"></audio>
+</div>
+
+<script>
+    const audio = document.getElementById('bg-music');
+    const button = document.getElementById('music-toggle');
+
+    button.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.currentTime = 0; // Start at the beginning
+            audio.play();
+            button.innerText = "Pause Music";
+
+            // Set a timer to pause after 15 seconds
+            setTimeout(() => {
+                audio.pause();
+                button.innerText = "Play Music";
+            }, 15000); 
+        } else {
+            audio.pause();
+            button.innerText = "Play Music";
+        }
+    });
+</script>
         }
 
         /* The Main Website Border (The "Card") */
